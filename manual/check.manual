@@ -2,4 +2,4 @@ SUPPORTED TECHNOLOGIES
 - JQuery (set as default)
 
 EXAMPLE
-./console check http://wwww.google.com JQuery
+./console check http://www.google.com JQuery

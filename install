@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ "`id -u`" != "0" ]]; then
+    echo "ERROR: It's necessery run this install script as root." 1>&2
+    exit 1
+fi
+
+path=`dirname $0`
+
+mkdir /opt/jquery_tester
+cp -R ${path}/* /opt/jquery_tester
+rm /opt/jquery_tester/install
+
+ln -s /opt/jquery_tester/bin/console /usr/local/bin/jquery_tester
+chmod +x /usr/local/bin/jquery_tester
+
+echo "Installation was probably sucessful."
