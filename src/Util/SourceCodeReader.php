@@ -4,7 +4,7 @@ namespace Util\SourceCode;
 
 class SourceCodeReader
 {
-    public static function read($url)
+    public static function getSourceCode($url)
     {
         $sourceCode = self::readSourceCode($url);
         self::sourceCodeValidation($sourceCode);
