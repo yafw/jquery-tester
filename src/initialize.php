@@ -1,5 +1,7 @@
 <?php
 
+use Config\Config;
+
 $config_path = dirname(__DIR__) . "/app/config/Config.php";
 require_once($config_path);
 

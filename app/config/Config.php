@@ -1,5 +1,7 @@
 <?php
 
+namespace Config;
+
 class Config
 {
     public static $directory;

@@ -1,5 +1,7 @@
 <?php
 
+use Config\Config;
+
 spl_autoload_register(function($namespace) {
     $class_path = namespace_to_path($namespace);
     try_require_class($class_path);
@@ -13,7 +15,7 @@ function namespace_to_path($namespace)
      */
     $namespace = explode('\\', $namespace);
 
-    $directory = Config::$directory . $namespace[0];
+    $directory = Config::$directory . "/src/" . $namespace[0];
     $class_name = end($namespace) . ".php";
 
     $class_path = $directory . "/" . $class_name;

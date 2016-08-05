@@ -2,12 +2,15 @@
 
 <?php
 
+use Symfony\Component\Console\Application;
+use AppBundle\Command\CheckCommand;
+
 $initialize_path = dirname(__DIR__).'/src/initialize.php';
 require_once($initialize_path);
 
-use Symfony\Component\Console\Application;
-
 $application = new Application();
+
+$application->add(new CheckCommand());
 
 $application->run();
 
