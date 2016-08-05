@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+
+<?php
+
+$initialize_path = dirname(__DIR__).'/src/initialize.php';
+require_once($initialize_path);
+
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+
+$application->run();
+
+?>
