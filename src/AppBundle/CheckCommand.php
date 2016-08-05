@@ -14,7 +14,7 @@ class CheckCommand extends Command
     protected function configure()
     {
         $this->setName("check");
-        $this->setDescription("Chech if site use JQuery");
+        $this->setDescription("Chech if site use JQuery.");
         $this->setHelp($this->getManual());
         $this->addArgument("url", InputArgument::REQUIRED, "URL address");
         $this->addArgument("technology", InputArgument::OPTIONAL, "Technology");
@@ -30,7 +30,7 @@ class CheckCommand extends Command
 
         if($this->fileExists($technology)) {
             $checker = $this->loadClass($technology);
-            $isUsed = $checker->check($url); // Work in progress!!!
+            $isUsed = $checker->check($url);
             echo($this->getMessage($technology, $isUsed));
         }
     }
@@ -41,7 +41,7 @@ class CheckCommand extends Command
         $class_path .= $technology . "Checker.php";
 
         if(!file_exists($class_path))
-            return false;
+            die("Command don't support this technology\n");
 
         return true;
     }
@@ -62,7 +62,7 @@ class CheckCommand extends Command
 
     private function readManual($manual_path)
     {
-        $error_message = "Opening file was failed!";
+        $error_message = "Opening file was failed!\n";
 
         $file = fopen($manual_path, 'r') or die($error_message);
         $content = fread($file, filesize($manual_path));
