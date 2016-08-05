@@ -4,15 +4,15 @@ namespace Util\SourceCode;
 
 class SourceCodeReader
 {
-    private $sourceCode = "";
-
-    public function __construct($url)
+    public static function read($url)
     {
-        $this->sourceCode = $this->readSourceCode($url);
-        $this->sourceCodeValidation();
+        $sourceCode = self::readSourceCode($url);
+        self::sourceCodeValidation($sourceCode);
+
+        return $sourceCode;
     }
 
-    private function readSourceCode($url)
+    private static function readSourceCode($url)
     {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -23,15 +23,10 @@ class SourceCodeReader
         return $data;
     }
 
-    private function sourceCodeValidation()
+    private static function sourceCodeValidation($sourceCode)
     {
-        if("" === $this->sourceCode)
+        if("" === $sourceCode)
             die("Error! Try another URL format.\n");
-    }
-
-    public function getSourceCode()
-    {
-        return $this->sourceCode;
     }
 }
 
