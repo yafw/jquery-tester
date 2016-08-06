@@ -4,8 +4,9 @@ namespace Util\Checker;
 
 use Symfony\Component\DomCrawler\Crawler;
 use Util\SourceCode\SourceCodeReader;
+use Util\Checker\CheckerInterface;
 
-class JQueryChecker
+class JQueryChecker implements CheckerInterface
 {
     private $crawler;
 
@@ -13,7 +14,7 @@ class JQueryChecker
     {
         $this->initCrawler($url);
         $script_blocks = $this->findScriptBlocks();
-        return $this->containJQuery($script_blocks);
+        return $this->containsJQuery($script_blocks);
     }
 
     private function initCrawler($url)
@@ -30,7 +31,7 @@ class JQueryChecker
             });
     }
 
-    private function containJQuery($blocks)
+    private function containsJQuery($blocks)
     {
         foreach($blocks as $block) {
             // if block contains something like $(...)
