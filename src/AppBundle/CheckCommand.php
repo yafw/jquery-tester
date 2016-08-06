@@ -55,13 +55,6 @@ class CheckCommand extends Command
     private function getManual()
     {
         $manual_path = Config::$directory . "/manual/check.manual";
-        $content = $this->readManual($manual_path);
-
-        return $content;
-    }
-
-    private function readManual($manual_path)
-    {
         $error_message = "Opening file was failed!\n";
 
         $file = fopen($manual_path, 'r') or die($error_message);
