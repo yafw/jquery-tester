@@ -1,5 +1,7 @@
 SUPPORTED TECHNOLOGIES
 - JQuery (set as default)
+- CSS
 
-EXAMPLE
+EXAMPLES
 ./console check http://www.google.com JQuery
+./console check http://www.google.com CSS
