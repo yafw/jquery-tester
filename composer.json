@@ -2,7 +2,8 @@
     "require": {
         "symfony/console": "^3.1",
         "symfony/dom-crawler": "^3.1",
-        "symfony/css-selector": "^3.1"
+        "symfony/css-selector": "^3.1",
+        "anlutro/curl": "^1.4"
     },
     "autoload": {
         "psr-4": {

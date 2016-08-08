@@ -3,14 +3,17 @@
 namespace App\Checker;
 
 use Symfony\Component\DomCrawler\Crawler;
-use App\SourceCode\SourceCodeReader;
+use anlutro\cURL\cURL;
+use App\SourceCode\Reader;
 use App\Checker\CheckerInterface;
 
 class CSSChecker implements CheckerInterface
 {
     public function check($url)
     {
-        $sourceCode = SourceCodeReader::getSourceCode($url);
+        $curl = new cURL();
+        $sourceCode = $curl->get($url)->body;
+
         return $this->containsCSS($sourceCode);
     }
 

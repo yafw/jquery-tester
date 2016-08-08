@@ -3,7 +3,8 @@
 namespace App\Checker;
 
 use Symfony\Component\DomCrawler\Crawler;
-use App\Util\SourceCodeReader;
+use anlutro\cURL\cURL;
+use App\SourceCode\Reader;
 use App\Checker\CheckerInterface;
 
 class JQueryChecker implements CheckerInterface
@@ -19,7 +20,8 @@ class JQueryChecker implements CheckerInterface
 
     private function initCrawler($url)
     {
-        $sourceCode = SourceCodeReader::getSourceCode($url);
+        $curl = new cURL();
+        $sourceCode = $curl->get($url)->body;
         $this->crawler = new Crawler($sourceCode);
     }
 
