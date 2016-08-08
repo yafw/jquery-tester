@@ -1,5 +1,4 @@
 <?php
-
 namespace JQueryTester\Checker;
 
 interface CheckerInterface

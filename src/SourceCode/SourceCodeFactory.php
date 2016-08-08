@@ -1,9 +1,7 @@
 <?php
-
 namespace JQueryTester\SourceCode;
 
 use anlutro\cURL\cURL;
-use JQueryTester\SourceCode\Reader;
 
 class SourceCodeFactory
 {

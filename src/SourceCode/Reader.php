@@ -1,5 +1,4 @@
 <?php
-
 namespace JQueryTester\SourceCode;
 
 use anlutro\cURL\cURL;
@@ -25,7 +24,8 @@ class Reader
 
     private function validation($sourceCode)
     {
-        if("" === $sourceCode)
+        if ('' === $sourceCode) {
             die("Error! Try another URL format.\n");
+        }
     }
 }
