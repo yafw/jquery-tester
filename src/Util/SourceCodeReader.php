@@ -1,6 +1,6 @@
 <?php
 
-namespace Util\SourceCode;
+namespace App\Util;
 
 class SourceCodeReader
 {
@@ -29,5 +29,3 @@ class SourceCodeReader
             die("Error! Try another URL format.\n");
     }
 }
-
-?>

@@ -2,15 +2,13 @@
 <?php
 
 use Symfony\Component\Console\Application;
-use AppBundle\Command\CheckCommand;
+use App\Command\CheckCommand;
 
-$initialize_path = dirname(__DIR__).'/src/initialize.php';
-require_once($initialize_path);
+$vendor_autoload_path = dirname(__DIR__) . "/vendor/autoload.php";
+require_once($vendor_autoload_path);
 
 $application = new Application();
 
 $application->add(new CheckCommand());
 
 $application->run();
-
-?>
