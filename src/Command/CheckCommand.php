@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Command;
+namespace JQueryTester\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DomCrawler\Crawler;
+
+use anlutro\cURL\cURL;
+
+use JQueryTester\Checker\CheckerFactory;
+use JQueryTester\SourceCode\SourceCodeFactory;
 
 class CheckCommand extends Command
 {
@@ -26,19 +32,16 @@ class CheckCommand extends Command
         if(null === $technology)
             $technology = "JQuery";
 
-        try {
-            $checker = $this->loadClass($technology);
-            $isUsed = $checker->check($url);
-            echo($this->getMessage($technology, $isUsed));
-        } catch(Exception $e) {
-            die("Command don't support this technology\n");
-        }
-    }
+        $curl = new cURL();
+        $reader = SourceCodeFactory::createReader($curl, $url);
 
-    private function loadClass($technology)
-    {
-        $class_name = "\\App\\Checker\\" . $technology . "Checker";
-        return new $class_name();
+        $sourceCode = $reader->read();
+        $crawler = new Crawler($sourceCode);
+        $checker = CheckerFactory::createChecker($technology, $crawler);
+
+        $isUsed = $checker->check();
+
+        echo($this->getMessage($technology, $isUsed));
     }
 
     private function getManual()

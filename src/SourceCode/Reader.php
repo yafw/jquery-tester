@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Util;
+namespace JQueryTester\SourceCode;
 
 use anlutro\cURL\cURL;
 
-class SourceCodeReader
+class Reader
 {
-    public function getSourceCode($url)
+    private $curl;
+    private $url;
+
+    public function __construct(cURL $curl, $url)
     {
-        $sourceCode = $this->read($url);
+        $this->curl = $curl;
+        $this->url = $url;
+    }
+
+    public function read()
+    {
+        $sourceCode = $this->curl->get($this->url)->body;
         $this->validation($sourceCode);
 
         return $sourceCode;
     }
 
-    private function read($url)
-    {
-        $curl = new cURL();
-        $sourceCode = $curl->get($url)->body;
-
-        return $sourceCode;
-    }
-
-    private static function sourceCodeValidation($sourceCode)
+    private function validation($sourceCode)
     {
         if("" === $sourceCode)
             die("Error! Try another URL format.\n");

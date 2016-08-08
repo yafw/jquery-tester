@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Checker;
+namespace JQueryTester\Checker;
 
 interface CheckerInterface
 {
-    public function check($url);
+    public function check();
 }

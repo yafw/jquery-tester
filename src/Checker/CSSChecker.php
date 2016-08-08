@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Checker;
+namespace JQueryTester\Checker;
 
 use Symfony\Component\DomCrawler\Crawler;
-use anlutro\cURL\cURL;
-use App\SourceCode\Reader;
-use App\Checker\CheckerInterface;
 
 class CSSChecker implements CheckerInterface
 {
-    public function check($url)
-    {
-        $curl = new cURL();
-        $sourceCode = $curl->get($url)->body;
+    private $crawler;
 
-        return $this->containsCSS($sourceCode);
+    public function __construct(Crawler $crawler)
+    {
+        $this->crawler = $crawler;
     }
 
-    private function containsCSS($sourceCode)
+    public function check()
     {
-        if(preg_match('/\.css/', $sourceCode))
+        $html = $this->crawler->html();
+        return $this->containsCSS($html);
+    }
+
+    private function containsCSS($html)
+    {
+        if(preg_match('/\.css/', $html))
                 return true;
 
         return false;

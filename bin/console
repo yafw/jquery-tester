@@ -2,7 +2,7 @@
 <?php
 
 use Symfony\Component\Console\Application;
-use App\Command\CheckCommand;
+use JQueryTester\Command\CheckCommand;
 
 $vendor_autoload_path = dirname(__DIR__) . "/vendor/autoload.php";
 require_once($vendor_autoload_path);

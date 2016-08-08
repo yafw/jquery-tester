@@ -1,28 +1,23 @@
 <?php
 
-namespace App\Checker;
+namespace JQueryTester\Checker;
 
 use Symfony\Component\DomCrawler\Crawler;
-use anlutro\cURL\cURL;
-use App\SourceCode\Reader;
-use App\Checker\CheckerInterface;
+use JQueryTester\Checker\CheckerInterface;
 
 class JQueryChecker implements CheckerInterface
 {
     private $crawler;
 
-    public function check($url)
+    public function __construct(Crawler $crawler)
     {
-        $this->initCrawler($url);
-        $script_blocks = $this->findScriptBlocks();
-        return $this->containsJQuery($script_blocks);
+        $this->crawler = $crawler;
     }
 
-    private function initCrawler($url)
+    public function check()
     {
-        $curl = new cURL();
-        $sourceCode = $curl->get($url)->body;
-        $this->crawler = new Crawler($sourceCode);
+        $html = $this->findScriptBlocks();
+        return $this->containsJQuery($html);
     }
 
     private function findScriptBlocks()
